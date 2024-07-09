@@ -6,13 +6,13 @@ export default function layout({ children }) {
     return (
         // TODO: ໜ້າຈັດການ layout ຂອງ dashboard
 
-        <div className='flex'>
+        <div className='flex '>
             {/* Sidebar*/}
             <Sidebar />
-            <div className=' w-full'>
+        <div className='w-full'>
                 {/* Hesder */}
                 <Navbar />
-                <main>
+                <main className=' ml-60 p-8 bg-slate-900 text-slate-50 min-h-screen mt-16 ' >
                     {children}
                 </main>
                 {/* Main */}
