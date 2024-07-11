@@ -1,3 +1,4 @@
+import CostomDataTable from "@/components/backend/CostomDataTable";
 import DashBoardCharts from "@/components/backend/DashBoardCharts";
 import Heading from "@/components/backend/heading";
 import LargeCards from "@/components/backend/LargeCards";
@@ -15,6 +16,7 @@ export default function page() {
       {/* Charts */}
       <DashBoardCharts/>
       {/* Recent Orders Table */}
+      <CostomDataTable/>
     </div>
   );
 }
