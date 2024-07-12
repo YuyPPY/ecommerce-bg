@@ -2,14 +2,16 @@
 import React, { useState } from "react";
 import data from "../../data.json";
 export default function CostomDataTable() {
-  const arr=[1,2,3,4,5];
+  const arr = [1, 2, 3, 4, 5];
   const PAGE_SIZE = 10;
   const [currentPage, setCurrentPage] = useState(1);
-  const startIndex= (currentPage-1)*PAGE_SIZE;
-  const endIndex= startIndex+PAGE_SIZE;
-
+  const startIndex = (currentPage - 1) * PAGE_SIZE;
+  const endIndex = startIndex + PAGE_SIZE;
   const currentlyDisplayedData = data.slice(startIndex, endIndex);
-  
+  const totalPages = Math.ceil(data.length / PAGE_SIZE);
+  const itemStartIndex = startIndex + 1;
+  const itemEndsIndex = Math.min(startIndex + PAGE_SIZE, data.length);
+
   return (
     <div className="">
       <h2 className="text-xl font-bold mb-4">Recent Orders</h2>
@@ -52,7 +54,7 @@ export default function CostomDataTable() {
                   Lasr Name
                 </th>
                 <th scope="col" className="px-6 py-3">
-                Email
+                  Email
                 </th>
                 <th scope="col" className="px-6 py-3">
                   Gender
@@ -65,7 +67,10 @@ export default function CostomDataTable() {
             <tbody>
               {currentlyDisplayedData.map((item, i) => {
                 return (
-                  <tr  key={i} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <tr
+                    key={i}
+                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                  >
                     <td className="w-4 p-4">
                       <div className="flex items-center">
                         <input
@@ -97,12 +102,12 @@ export default function CostomDataTable() {
                     <td className="px-6 py-4">{item.email}</td>
                     <td className="px-6 py-4">{item.gender}</td>
                     <td className="px-6 py-4">
-                      <a
+                      <button
                         href="#"
                         className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                       >
                         Edit
-                      </a>
+                      </button>
                     </td>
                   </tr>
                 );
@@ -113,73 +118,52 @@ export default function CostomDataTable() {
             className="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4"
             aria-label="Table navigation"
           >
-            <span className="text-sm font-normal text-gray-500 dark:text-gray-400 mb-4 md:mb-0 block w-full md:inline md:w-auto">
+            <span className="text-xl font-normal text-gray-500 dark:text-gray-400 mb-4 md:mb-0 block w-full md:inline md:w-auto">
               Showing{" "}
               <span className="font-semibold text-gray-50 dark:text-white">
-                1-10
+                {itemStartIndex}-{itemEndsIndex}
               </span>{" "}
               of{" "}
               <span className="font-semibold text-gray-50 dark:text-white">
-                1000
+                {data.length}
               </span>
             </span>
-            <ul className="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">
+            <ul className="inline-flex -space-x-px rtl:space-x-reverse text-sm h-14">
               <li>
-                <a
-                  href="#"
-                  className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                <button
+                  onClick={() => setCurrentPage(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  className="flex items-center justify-center px-3 h-10 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                 >
                   Previous
-                </a>
+                </button>
               </li>
+
+              {Array.from({ length: totalPages }, (_, index) => {
+                return (
+                  <li key={index}>
+                    <button
+                      onClick={() => setCurrentPage(index + 1)}
+                      disabled={currentPage == index + 1}
+                      className={
+                        currentPage == index + 1
+                          ? "flex items-center justify-center px-3 h-10 leading-tight text-gray-50 bg-green-600 border border-green-300 hover:bg-green-800 hover:text-white dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                          : "flex items-center justify-center px-3 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      }
+                    >
+                      {index + 1}
+                    </button>
+                  </li>
+                );
+              })}
               <li>
-                <a
-                  href="#"
-                  className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                >
-                  1
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                >
-                  2
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  aria-current="page"
-                  className="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
-                >
-                  3
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                >
-                  4
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                >
-                  5
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                <button
+                  onClick={() => setCurrentPage(currentPage + 1)}
+                  disabled={currentPage == totalPages}
+                  className="flex items-center justify-center px-3 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                 >
                   Next
-                </a>
+                </button>
               </li>
             </ul>
           </nav>
