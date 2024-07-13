@@ -13,8 +13,8 @@ export default function CostomDataTable() {
   const itemEndsIndex = Math.min(startIndex + PAGE_SIZE, data.length);
 
   return (
-    <div className="">
-      <h2 className="text-xl font-bold mb-4">Recent Orders</h2>
+    <div className="mt-8">
+      <h2 className="text-xl font-bold mb-4 text-slate-800 dark:text-slate-50 px-4">Recent Orders</h2>
       {/* Table */}
       {/* TODO: Recent Orders */}
 
@@ -147,7 +147,7 @@ export default function CostomDataTable() {
                       disabled={currentPage == index + 1}
                       className={
                         currentPage == index + 1
-                          ? "flex items-center justify-center px-3 h-10 leading-tight text-gray-50 bg-green-600 border border-green-300 hover:bg-green-800 hover:text-white dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                          ? "flex items-center justify-center px-3 h-10 leading-tight text-gray-50 bg-green-600 border border-green-300 hover:bg-green-800 hover:text-white dark:bg-slate-300 dark:border-slate-200 dark:text-gray-800 dark:hover:bg-gray-300 "
                           : "flex items-center justify-center px-3 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                       }
                     >
