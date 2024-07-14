@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import ThemeSwitcherBtn from "../ThemeSwitcherBtn";
 
-export default function Navbar() {
+export default function Navbar({setShowSidebar,showSidebar}) {
   return (
     // TODO: ປ່ຽນໄອຄອນຢູ່ໜ້າ backend
 
@@ -31,7 +31,8 @@ export default function Navbar() {
      top-0 w-full px-8 z-50  pr-[20rem] shadow-lg"
     >
       {/* Icon*/}
-      <button  className=" text-lime-700 dark:text-lime-500">
+      <button  onClick={()=>setShowSidebar(!showSidebar)} 
+      className=" text-lime-700 dark:text-lime-500">
         <AlignJustify />
       </button>
       {/* 3 Icons */}
