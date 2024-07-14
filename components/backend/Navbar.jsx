@@ -25,11 +25,10 @@ export default function Navbar() {
     // TODO: ປ່ຽນໄອຄອນຢູ່ໜ້າ backend
 
     <div
-      className="flex items-center justify-between
-      bg-white
+      className="flex items-center justify-between bg-white
      dark:bg-slate-800 text-slate-50  
      h-20 py-8 fixed 
-     top-0 w-full px-8 z-50 left-60 right-0 pr-[20rem] shadow-lg"
+     top-0 w-full px-8 z-50  pr-[20rem] shadow-lg"
     >
       {/* Icon*/}
       <button  className=" text-lime-700 dark:text-lime-500">
