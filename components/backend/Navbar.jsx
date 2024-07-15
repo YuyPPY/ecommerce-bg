@@ -19,8 +19,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import ThemeSwitcherBtn from "../ThemeSwitcherBtn";
+import Link from "next/link";
 
-export default function Navbar({setShowSidebar,showSidebar}) {
+export default function Navbar({ setShowSidebar, showSidebar }) {
   return (
     // TODO: ປ່ຽນໄອຄອນຢູ່ໜ້າ backend
 
@@ -28,16 +29,17 @@ export default function Navbar({setShowSidebar,showSidebar}) {
       className="flex items-center justify-between bg-white
      dark:bg-slate-800 text-slate-50  
      h-20 py-8 fixed 
-     top-0 w-full px-8 z-50  pr-[20rem] shadow-lg"
+     top-0 w-full px-8 z-50  sm:pr-[20rem] shadow-lg"
     >
+      <Link href={"/dashboard"} className="sm:hidden">Logo</Link>
       {/* Icon*/}
-      <button  onClick={()=>setShowSidebar(!showSidebar)} 
-      className=" text-lime-700 dark:text-lime-500">
+      <button onClick={() => setShowSidebar(!showSidebar)}
+        className=" text-green-700 dark:text-green-500">
         <AlignJustify />
       </button>
       {/* 3 Icons */}
       <div className="flex space-x-3 ">
-      <ThemeSwitcherBtn/>
+        <ThemeSwitcherBtn />
 
         <DropdownMenu>
           <DropdownMenuTrigger>

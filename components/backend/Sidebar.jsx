@@ -124,7 +124,7 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
     <div className={showSidebar
       ? "sm:block mt-20 sm:mt-0 dark:bg-slate-700 bg-white  space-y-6 w-64 h-screen text-slate-800  dark:text-slate-50  fixed left-0 top-0 shadow-md"
       : " mt-20 hidden sm:mt-0 sm:block dark:bg-slate-700 bg-white  space-y-6 w-64 h-screen text-slate-800  dark:text-slate-50  fixed left-0 top-0 shadow-md"}>
-      <Link className="px-6 py-4" href="#">
+      <Link onClick={()=> setShowSidebar(false)} className="px-6 py-4" href="/dashboard">
         {/*  className="w-36" in Image*/}
         <Image
           src="/logo-bg.png"

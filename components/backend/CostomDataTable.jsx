@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React, { useState } from "react";
 import data from "../../data.json";
 export default function CostomDataTable() {
@@ -13,13 +13,12 @@ export default function CostomDataTable() {
   const itemEndsIndex = Math.min(startIndex + PAGE_SIZE, data.length);
 
   return (
-    <div className="mt-8">
-      <h2 className="text-xl font-bold mb-4 text-slate-800 dark:text-slate-50 px-4">Recent Orders</h2>
-      {/* Table */}
-      {/* TODO: Recent Orders */}
+      <div className="mt-8 ">
+        <h2 className="text-xl font-bold mb-4 text-slate-800 dark:text-slate-50 px-4">Recent Orders</h2>
+        {/* Table */}
+        {/* TODO: Recent Orders */}
 
-      <div className="p-8">
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <div className="relative sm:overflow-x-auto shadow-md sm:rounded-lg p-8">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
@@ -29,15 +28,15 @@ export default function CostomDataTable() {
                       id="checkbox-all-search"
                       type="checkbox"
                       className="w-4 h-4 
-                    text-blue-600
-                     bg-gray-100
-                      border-gray-300
-                       rounded focus:ring-blue-500
-                        dark:focus:ring-blue-600
-                         dark:ring-offset-gray-800
-                          dark:focus:ring-offset-gray-800
-                           focus:ring-2 dark:bg-gray-700
-                            dark:border-gray-600"
+                  text-blue-600
+                   bg-gray-100
+                    border-gray-300
+                     rounded focus:ring-blue-500
+                      dark:focus:ring-blue-600
+                       dark:ring-offset-gray-800
+                        dark:focus:ring-offset-gray-800
+                         focus:ring-2 dark:bg-gray-700
+                          dark:border-gray-600"
                     />
                     <label htmlFor="checkbox-all-search" className="sr-only">
                       checkbox
@@ -169,6 +168,5 @@ export default function CostomDataTable() {
           </nav>
         </div>
       </div>
-    </div>
   );
 }
