@@ -13,22 +13,13 @@ import {
   UserSquare2,
   Warehouse,
   Boxes,
-  NotebookPen,
   SendToBack,
   LayoutList,
   ScanSearch,
   PanelTop,
-  ChevronDownCircle,
   ChevronDown,
 } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+
 import {
   Collapsible,
   CollapsibleContent,
@@ -75,9 +66,18 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
       href: "/dashboard/orders",
     },
     {
-      title: "Staff",
+      title: "Our Staff",
       icon: User,
       href: "/dashboard/staff",
+    },
+    {
+      title: "BG Community",
+      icon: User,
+      href: "/dashboard/community",
+    },{
+      title: "Wallet Staff",
+      icon: User,
+      href: "/dashboard/wallet",
     },
     {
       title: "Settings",
@@ -110,7 +110,7 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
     {
       title: "Conpons",
       icon: ScanSearch,
-      href: "/dashboard/Conpons",
+      href: "/dashboard/conpon",
     },
     {
       title: "Store Sliders",
@@ -122,8 +122,8 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
   const [openMenu, setOpenMenu] = useState(false);
   return (
     <div className={showSidebar
-      ? "sm:block mt-20 sm:mt-0 dark:bg-slate-700 bg-white  space-y-6 w-64 h-screen text-slate-800  dark:text-slate-50  fixed left-0 top-0 shadow-md"
-      : " mt-20 hidden sm:mt-0 sm:block dark:bg-slate-700 bg-white  space-y-6 w-64 h-screen text-slate-800  dark:text-slate-50  fixed left-0 top-0 shadow-md"}>
+      ? "sm:block mt-20 sm:mt-0 dark:bg-slate-700 bg-white  space-y-6 w-64 h-screen text-slate-800  dark:text-slate-300  fixed left-0 top-0 shadow-md overflow-x-scroll"
+      : " mt-20 hidden sm:mt-0 sm:block dark:bg-slate-700 bg-white  space-y-6 w-64 h-screen text-slate-800  dark:text-slate-300  fixed left-0 top-0 shadow-md overflow-x-scroll"}>
       <Link onClick={()=> setShowSidebar(false)} className="px-6 py-4" href="/dashboard">
         {/*  className="w-36" in Image*/}
         <Image
