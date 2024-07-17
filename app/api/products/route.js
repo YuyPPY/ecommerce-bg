@@ -15,13 +15,13 @@ export async function POST(request){
         // -category
         // -tags[]
         const {title,description,slug,sku,barcode,productPrice,salePrice,category,Farmer    }= await request.json();
-        const newMarkets ={title,description,slug,sku,barcode,productPrice,salePrice,category,Farmer};
-        console.log(newMarkets)
-        return NextResponse.json(newMarkets)
+        const newProducts ={title,description,slug,sku,barcode,productPrice,salePrice,category,Farmer};
+        console.log(newProducts)
+        return NextResponse.json(newProducts)
     }catch(error){
         console.log(error)
         return NextResponse.json({
-            massage:"Failed to create  Markets",
+            massage:"Failed to create  Products",
             error
         },{status:500})
     }

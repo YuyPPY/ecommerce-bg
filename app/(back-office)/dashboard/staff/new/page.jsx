@@ -9,6 +9,7 @@ import { generateCouponCode, } from '@/lib/generateCouponCode'
 import ToggleInput from '@/components/backend/Forminputs/Toggleinput'
 import TextareaInput from '@/components/backend/Forminputs/TextAreainput'
 export default function NewStaff() {
+
   const [loading, setLoading] = useState(false)
   const [couponCode, setcouponCode] = useState()
 
@@ -28,13 +29,17 @@ export default function NewStaff() {
   const isActive = watch("isActive")
   async function onSubmit(data) {
     {/* 
-        -id => auto()
-        -title
-        -expiryData
-        -code => auto()
+     -name
+     -password
+     -email
+     -physicalAddress
+     -NIN
+     -DOB
+     -notes
+     -isActive
     */}
-    const couponCode = generateCouponCode(data.title, data.expiryDate)
-    data.couponCode = couponCode;
+    const code  = generateCouponCode("LSM", data.name)
+    data.code= code;
     console.log(data);
     makePostRequest(setLoading, "api/staff", data, "Staff", reset
 
@@ -55,6 +60,21 @@ export default function NewStaff() {
             name="name"
             register={register}
             errors={errors}
+          />
+          <TextInput
+            label="NIN (Id Number)"
+            name="nin"
+            register={register}
+            errors={errors}
+            className=' w-full'
+          />
+          <TextInput
+            label="Date of Birth"
+            name="dob"
+            type='date'
+            register={register}
+            errors={errors}
+            className=' w-full'
           />
           <TextInput
             label="Password"
