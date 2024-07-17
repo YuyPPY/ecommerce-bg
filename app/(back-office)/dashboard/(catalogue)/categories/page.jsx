@@ -11,14 +11,12 @@ export default function page() {
         href="/dashboard/categories/new"
         linkTitle="Add Category"
       />
-
       {/* Table  Actions */}
       {/* Export || Search || Bulk Delete */}
       <TableAction />
       <div className="py-8">
         <h2>Table</h2>
       </div>
-
     </div>
   );
 }

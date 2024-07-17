@@ -108,9 +108,9 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
       href: "/dashboard/attributes",
     },
     {
-      title: "Conpons",
+      title: "Coupons",
       icon: ScanSearch,
-      href: "/dashboard/conpon",
+      href: "/dashboard/coupons",
     },
     {
       title: "Store Sliders",

@@ -7,11 +7,13 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 // import generateSlug from "@/lib/generateSlug";
 import { generateSlug } from '@/lib/generateSlug'
+import { makePostRequest } from '@/lib/apiRequest'
+
 import ImageInput from '@/components/backend/Forminputs/Imageinput'
 export default function NewCategory() {
-  const [imageUrl, setImageUrl] = useState("")
-  const [loading,setLoading] = useState("false")
-  const { register, handleSubmit, formState: { errors } } = useForm()
+  const [imageUrl, setImageUrl] = useState()
+  const [loading, setLoading] = useState(flase)
+  const { register,reset, handleSubmit, formState: { errors } } = useForm()
   async function onSubmit(data) {
     {/* 
         -id
@@ -22,11 +24,20 @@ export default function NewCategory() {
         -stock
         -price
     */}
-        
+
     const slug = generateSlug(data.title)
     data.slug = slug
     data.imageUrl = imageUrl
+    data.status=''
     console.log(data)
+    makePostRequest(
+      setLoading,
+      'api/categories',
+      data,
+      "Category",
+      reset
+    );
+    setImageUrl("")
   }
   return (
     <div>

@@ -8,7 +8,7 @@ export default function SubmitButton({ isLoading=false,buttonTitle, loadingButto
         <button
           disabled
           type="button"
-          className="mt-4 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 inline-flex items-center"
+          className="mt-4 text-white bg-slate-900 hover:bg-slate-950 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 inline-flex items-center"
         >
           <svg
             aria-hidden="true"
