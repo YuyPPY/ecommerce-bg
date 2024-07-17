@@ -1,7 +1,6 @@
 "use client"
 import FormHeader from '@/components/backend/form/FormHeader'
 import SubmitButton from '@/components/backend/Forminputs/SubmitButton'
-import TextareaInput from '@/components/backend/Forminputs/TextAreainput'
 import TextInput from '@/components/backend/Forminputs/Textinput'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -9,7 +8,6 @@ import { useForm } from 'react-hook-form'
 import { generateSlug } from '@/lib/generateSlug'
 import { makePostRequest } from '@/lib/apiRequest'
 import ImageInput from '@/components/backend/Forminputs/Imageinput'
-import SelectInput from '@/components/backend/Forminputs/SelectInput'
 export default function NewCategory() {
   const [imageUrl, setImageUrl] = useState("")
   const markets = [
@@ -40,11 +38,9 @@ export default function NewCategory() {
     {/* 
         -id
         -title
-        -description
+        -link
         -image
-        -slug
-        -stock
-        -price
+        
     */}
 
     const slug = generateSlug(data.title)
@@ -54,9 +50,9 @@ export default function NewCategory() {
     console.log(data)
     makePostRequest(
       setLoading,
-      'api/categories',
+      'api/banners',
       data,
-      "Category",
+      "Banners",
       reset
     );
     setImageUrl("")
@@ -70,39 +66,30 @@ export default function NewCategory() {
         className="w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto my-3 mt-12">
         <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
           <TextInput
-            label="Category Title"
+            label="Banner Title"
             name="title"
             register={register}
             errors={errors}
-            className='w-full'
           />
-          <SelectInput
-            label="Select Market"
-            name="marketIds"
-            register={register}
-            errors={errors}
-            className='w-full'
-            options={markets}
-            multiple={false}
-          />
-          <TextareaInput
-            label="Category Description"
-            name="description"
+          <TextInput
+            label="Banner Links"
+            name="link"
+            type='url'
             register={register}
             errors={errors}
           />
+          {/* Configure this enpoint in the core js */}
           <ImageInput
             imageUrl={imageUrl}
             setImageUrl={setImageUrl}
-            endpoint='categoryImageUploader'
-            label="Category Image"
+            endpoint='bannerImageUploader'
+            label="Banner Image"
           />
         </div>
         <SubmitButton
           isLoading={loading}
-
-          buttonTitle="Create Category"
-          loadingButtonTitle="Creating Category please wait..."
+          buttonTitle="Create Banner"
+          loadingButtonTitle="Creating Banner please wait..."
         />
       </form>
     </div>

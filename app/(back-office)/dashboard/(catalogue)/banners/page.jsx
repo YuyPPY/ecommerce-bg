@@ -1,9 +1,22 @@
+import PageHeader from "@/components/backend/form/PageHeader";
+import TableAction from "@/components/backend/TableAction";
 import React from "react";
 
 export default function page() {
   return (
     <div>
-      <h2>Banners</h2>
+      {/* Header */}
+      <PageHeader
+        heading="Banners"
+        href="/dashboard/banners/new"
+        linkTitle="Add Banners"
+      />
+      {/* Table  Actions */}
+      {/* Export || Search || Bulk Delete */}
+      <TableAction />
+      <div className="py-8">
+        <h2>Table</h2>
+      </div>
     </div>
   );
 }
