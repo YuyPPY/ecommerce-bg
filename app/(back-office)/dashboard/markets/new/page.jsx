@@ -8,8 +8,8 @@ import { useForm } from 'react-hook-form'
 import { generateSlug } from '@/lib/generateSlug'
 import { makePostRequest } from '@/lib/apiRequest'
 import ImageInput from '@/components/backend/Forminputs/Imageinput'
-export default function NewBanner() {
-  const [imageUrl, setImageUrl] = useState("")
+export default function NewMarkets() {
+  const [logoUrl, setLogoUrl] = useState("")
   const markets = [
     {
       id: 1,
@@ -45,51 +45,50 @@ export default function NewBanner() {
 
     const slug = generateSlug(data.title)
     data.slug = slug
-    data.imageUrl = imageUrl
-    data.status = ''
+    data.logoUrl = logoUrl
     console.log(data)
     makePostRequest(
       setLoading,
-      'api/banners',
+      'api/markets',
       data,
-      "Banners",
+      "Markets",
       reset
     );
-    setImageUrl("")
+    setLogoUrl("")
   }
   return (
     <div>
-      <FormHeader title="New Categroy" />
+      <FormHeader title="New Markets" />
       {/* Form     */}
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto my-3 mt-12">
         <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
           <TextInput
-            label="Banner Title"
+            label="Markets Title"
             name="title"
             register={register}
             errors={errors}
           />
-          <TextInput
-            label="Banner Links"
-            name="link"
-            type='url'
-            register={register}
-            errors={errors}
-          />
+          
           {/* Configure this enpoint in the core js */}
           <ImageInput
-            imageUrl={imageUrl}
-            setImageUrl={setImageUrl}
-            endpoint='bannerImageUploader'
-            label="Banner Image"
+            imageUrl={logoUrl}
+            setImageUrl={setLogoUrl}
+            endpoint='marketLogoUploader'
+            label="Markets Logo"
+          />
+          <TextInput
+            label="Markets Description"
+            name="description"
+            register={register}
+            errors={errors}
           />
         </div>
         <SubmitButton
           isLoading={loading}
-          buttonTitle="Create Banner"
-          loadingButtonTitle="Creating Banner please wait..."
+          buttonTitle="Create Markets"
+          loadingButtonTitle="Creating Markets please wait..."
         />
       </form>
     </div>
