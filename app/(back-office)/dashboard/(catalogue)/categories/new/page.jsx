@@ -10,6 +10,7 @@ import { generateSlug } from '@/lib/generateSlug'
 import { makePostRequest } from '@/lib/apiRequest'
 import ImageInput from '@/components/backend/Forminputs/Imageinput'
 import SelectInput from '@/components/backend/Forminputs/SelectInput'
+import ToggleInput from '@/components/backend/Forminputs/Toggleinput'
 export default function NewCategory() {
   const [imageUrl, setImageUrl] = useState("")
   const markets = [
@@ -20,22 +21,33 @@ export default function NewCategory() {
     {
       id: 2,
       title: "OP Farmers Market"
-    },{
+    }, {
       id: 3,
       title: "IP Farmers Market"
-    },{
+    }, {
       id: 4,
       title: "KO Farmers Market"
-    },{
+    }, {
       id: 5,
       title: "LO Farmers Market"
-    },{
+    }, {
       id: 6,
       title: "PT Farmers Market"
     },
   ]
   const [loading, setLoading] = useState(false)
-  const { register, reset, handleSubmit, formState: { errors } } = useForm()
+  const {
+    register,
+    reset,
+    watch,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    defaultValues: {
+      isActive: true,
+    }
+  });
+  const isActive = watch('isActive')
   async function onSubmit(data) {
     {/* 
         -id
@@ -97,6 +109,14 @@ export default function NewCategory() {
             endpoint='categoryImageUploader'
             label="Category Image"
           />
+          <ToggleInput
+            label="Publish your Product"
+            name="isActive"
+            trueTitle="Active"
+            falseTitle="Draft"
+            register={register}
+          />
+
         </div>
         <SubmitButton
           isLoading={loading}

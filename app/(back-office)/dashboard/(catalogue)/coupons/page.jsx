@@ -10,7 +10,7 @@ export default function page() {
     <PageHeader
       heading="Coupons"
       href="/dashboard/coupons/new"
-      linkTitle="Add Conpons"
+      linkTitle="Add Coupons"
     />
 
     {/* Table  Actions */}

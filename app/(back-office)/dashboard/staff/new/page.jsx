@@ -4,17 +4,27 @@ import SubmitButton from '@/components/backend/Forminputs/SubmitButton'
 import TextInput from '@/components/backend/Forminputs/Textinput'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-// import generateSlug from "@/lib/generateSlug";
 import { makePostRequest } from '@/lib/apiRequest'
 import { generateCouponCode, } from '@/lib/generateCouponCode'
 import ToggleInput from '@/components/backend/Forminputs/Toggleinput'
-export default function NewCoupons() {
-  // const [imageUrl, setImageUrl] = useState("")
+import TextareaInput from '@/components/backend/Forminputs/TextAreainput'
+export default function NewStaff() {
   const [loading, setLoading] = useState(false)
-  // const [couponCode, setcouponCode] = useState()
+  const [couponCode, setcouponCode] = useState()
 
 
-  const { register, reset, watch, handleSubmit, formState: { errors } } = useForm({ defaultValues: { isActive: true, } })
+  const {
+    register,
+    reset,
+    watch,
+    handleSubmit,
+    formState: { errors },
+  } = useForm(
+    {
+      defaultValues: {
+        isActive: true,
+      }
+    })
   const isActive = watch("isActive")
   async function onSubmit(data) {
     {/* 
@@ -26,14 +36,14 @@ export default function NewCoupons() {
     const couponCode = generateCouponCode(data.title, data.expiryDate)
     data.couponCode = couponCode;
     console.log(data);
-    makePostRequest(setLoading, "api/coupons", data, "Coupon", reset
+    makePostRequest(setLoading, "api/staff", data, "Staff", reset
 
     )
 
   }
   return (
     <div>
-      <FormHeader title="New Coupons" />
+      <FormHeader title="New Staff" />
       {/* Form     */}
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -41,38 +51,54 @@ export default function NewCoupons() {
         <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
 
           <TextInput
-            label="Coupon Title"
-            name="title"
+            label="Staff Full Name"
+            name="name"
             register={register}
             errors={errors}
           />
-          {/* <TextInput
-            label="Coupon Code"
-            name="counponCode"
-            register={register}
-            errors={errors}
-            className=' w-full'
-          /> */}
           <TextInput
-            label="Coupon Expiry Date"
-            name="expiryDate"
-            type='date'
+            label="Password"
+            name="password"
+            type='password'
             register={register}
             errors={errors}
             className=' w-full'
           />
-          <ToggleInput
-            label="Publish your Coupon"
-            name="isActive"
-            trueTitle="Active"
-            falseTitle="Draft"
+
+          <TextInput
+            label="staff's Phone"
+            name="phone"
+            type='tel'
             register={register}
+            errors={errors}
+            className=' w-full'
+          />
+          <TextInput
+            label="Staff's Email Address"
+            name="email"
+            register={register}
+            errors={errors}
+            className=' w-full'
+          />
+          <TextInput
+            label="Staff's Physical Address"
+            name="physicalAddress"
+            register={register}
+            errors={errors}
+            className=' w-full'
+          />
+          <TextareaInput
+            label="Notes"
+            name="notes"
+            register={register}
+            errors={errors}
+            isRequired={false}
           />
         </div>
         <SubmitButton
           isLoading={loading}
-          buttonTitle="Create Coupon"
-          loadingButtonTitle="Creating Coupon please wait..."
+          buttonTitle="Create Staff"
+          loadingButtonTitle="Creating Staff please wait..."
         />
       </form>
     </div>

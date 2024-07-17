@@ -12,6 +12,7 @@ import ImageInput from '@/components/backend/Forminputs/Imageinput'
 import SelectInput from '@/components/backend/Forminputs/SelectInput'
 import { Plus, X } from 'lucide-react'
 import ArrayItemsInput from '@/components/backend/Forminputs/ArrayItemsinput'
+import ToggleInput from '@/components/backend/Forminputs/Toggleinput'
 export default function NewProducts() {
   const [imageUrl, setImageUrl] = useState("")
   const catagories = [
@@ -66,7 +67,20 @@ export default function NewProducts() {
 
 
   const [loading, setLoading] = useState(false)
-  const { register, reset, handleSubmit, formState: { errors } } = useForm()
+  const {
+    register,
+    reset,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm({
+    defaultValue:
+    {
+      isActive: true,
+    },
+  },
+  );
+  const isActive = watch("isActive")
   async function onSubmit(data) {
     const slug = generateSlug(data.title)
     data.slug = slug
@@ -164,7 +178,13 @@ export default function NewProducts() {
             register={register}
             errors={errors}
           />
-
+         <ToggleInput
+  label="Publish your Product"
+   name="isActive"
+   trueTitle="Active"
+   falseTitle="Draft"
+   register={register}
+  />
         </div>
         <SubmitButton
           isLoading={loading}

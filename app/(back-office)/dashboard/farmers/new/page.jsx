@@ -9,14 +9,15 @@ import { useForm } from 'react-hook-form'
 // import generateSlug from "@/lib/generateSlug";
 import { makePostRequest } from '@/lib/apiRequest'
 import { generateUserCode, } from '@/lib/generateUserCode'
+import ToggleInput from '@/components/backend/Forminputs/Toggleinput'
 export default function NewFarmers() {
   // const [imageUrl, setImageUrl] = useState("")
   const [loading, setLoading] = useState(false)
   // const [couponCode, setcouponCode] = useState()
 
 
-  const { register, reset, watch, handleSubmit, formState: { errors } } = useForm()
-
+  const { register, reset, watch, handleSubmit, formState: { errors } } = useForm({ defaultValues: { isActive: true, } })
+  const isActive = watch("isActive")
   async function onSubmit(data) {
     {/* 
         -id => auto()
@@ -24,13 +25,13 @@ export default function NewFarmers() {
         -expiryData
         -code => auto()
     */}
-// FarMERS NAME => MUKE JOHN => MJ
+    // FarMERS NAME => MUKE JOHN => MJ
 
     //LFF-MJ-1120
-    const code = generateUserCode('LFF',data.name)
+    const code = generateUserCode('LFF', data.name)
     data.code = code;
     console.log(data);
-     makePostRequest(setLoading,"api/farmers",data,"Farmer",reset )
+    makePostRequest(setLoading, "api/farmers", data, "Farmer", reset)
 
   }
   return (
@@ -90,8 +91,14 @@ export default function NewFarmers() {
             name="notes"
             register={register}
             errors={errors}
-            isRequired= {false}
+            isRequired={false}
           />
+          <ToggleInput
+            label="Farmer Status"
+            name="isActive"
+            trueTitle="Active"
+            falseTitle="Draft"
+            register={register} />
         </div>
         <SubmitButton
           isLoading={loading}
