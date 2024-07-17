@@ -10,6 +10,8 @@ import { generateSlug } from '@/lib/generateSlug'
 import { makePostRequest } from '@/lib/apiRequest'
 import ImageInput from '@/components/backend/Forminputs/Imageinput'
 import SelectInput from '@/components/backend/Forminputs/SelectInput'
+import { Plus, X } from 'lucide-react'
+import ArrayItemsInput from '@/components/backend/Forminputs/ArrayItemsinput'
 export default function NewProducts() {
   const [imageUrl, setImageUrl] = useState("")
   const catagories = [
@@ -55,33 +57,25 @@ export default function NewProducts() {
       id: 6,
       title: "farmers 6"
     },
-  ]
+  ];
+
+  // TAGS
+  const [tags, setTags] = useState([]);
+
+  console.log(tags);
+
+
   const [loading, setLoading] = useState(false)
   const { register, reset, handleSubmit, formState: { errors } } = useForm()
   async function onSubmit(data) {
-    {/* 
-        -id =>auto ()
-        -title
-        -description
-        -image/images
-        -slug => auto ()
-        -barcode
-        -sku
-        -productsPrice
-        -saslePrice
-        -farmer
-        -category
-        -tags[]
-    */}
-
     const slug = generateSlug(data.title)
     data.slug = slug
     data.imageUrl = imageUrl
-    data.status = ''
+    data.tags = tags;
     console.log(data)
     makePostRequest(
       setLoading,
-      'api/categories',
+      'api/products',
       data,
       "Products",
       reset
@@ -139,7 +133,7 @@ export default function NewProducts() {
             errors={errors}
             className='w-full'
             options={catagories}
-            // multiple={false}
+          // multiple={false}
           />
           <SelectInput
             label="Select Farmer"
@@ -148,7 +142,7 @@ export default function NewProducts() {
             errors={errors}
             className='w-full'
             options={farmers}
-            // multiple={false}
+          // multiple={false}
           />
           <TextareaInput
             label="Products Description"
@@ -162,12 +156,15 @@ export default function NewProducts() {
             endpoint='productsImageUploader'
             label="Products Image"
           />
+          {/* Tags */}
+          <ArrayItemsInput setItems={setTags} items={tags} itemTitle="Tag" />
           <TextareaInput
             label="Products Description"
             name="description"
             register={register}
             errors={errors}
           />
+
         </div>
         <SubmitButton
           isLoading={loading}
